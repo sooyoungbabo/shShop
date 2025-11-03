@@ -1,0 +1,5 @@
+node_modules/
+__http__/
+.env
+.prettierrc
+test.js
