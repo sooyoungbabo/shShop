@@ -14,40 +14,40 @@ datasource db {
 }
 
 model Product {
-  id          String          @id @default(uuid())
+  id          String    @id @default(uuid())
   name        String
   description String
   price       Float
-  tags        String
-  images      String?
-  createdAt   DateTime        @default(now())
-  updatedAt   DateTime        @updatedAt
-  replies     Reply2Product[]
+  tags        String[]
+  images      Image[]
+  comments    Comment[]
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
 }
 
 model Article {
-  id        String          @id @default(uuid())
+  id        String    @id @default(uuid())
   title     String
   content   String
-  createdAt DateTime        @default(now())
-  updatedAt DateTime        @updatedAt
-  replies   Reply2Article[]
+  comments  Comment[]
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
 }
 
-model Reply2Product {
+model Comment {
   id        String   @id @default(uuid())
   content   String
+  product   Product? @relation(fields: [productId], references: [id], onDelete: Cascade)
+  productId String?
+  article   Article? @relation(fields: [articleId], references: [id], onDelete: Cascade)
+  articleId String?
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-  product   Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
-  productId String   @unique
 }
 
-model Reply2Article {
-  id        String   @id @default(uuid())
-  content   String
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  article   Article  @relation(fields: [articleId], references: [id], onDelete: Cascade)
-  articleId String   @unique
+model Image {
+  id        String  @id @default(uuid())
+  url       String
+  product   Product @relation(fields: [productId], references: [id], onDelete: Cascade)
+  productId String
 }

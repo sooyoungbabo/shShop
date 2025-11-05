@@ -1,0 +1,45 @@
+GET http://localhost:3001/products
+
+###
+GET http://localhost:3001/products?description=프로
+
+###
+GET http://localhost:3001/products/7f70481b-784d-4b0e-bc3e-f05eefc17951
+
+###
+POST http://localhost:3001/products
+Content-Type: application/json
+
+{
+  "name": "iPhone 17 Pro",
+  "description": "최신 아이폰",
+  "price": 1790000,
+  "tags": ["전자제품", "스마트폰"]
+}
+
+###
+PATCH http://localhost:3001/products/a75b3c7e-fff0-4143-b010-1bf131935c9b
+Content-Type: application/json
+
+{
+  "description": "최신 아이폰, 8배 광학줌",
+  "price": 1790000,
+  "tags": ["전자제품", "스마트폰", "경량 케이스"]
+}
+
+###
+DELETE http://localhost:3001/products/a75b3c7e-fff0-4143-b010-1bf131935c9b
+
+###
+POST http://localhost:3001/products/7f70481b-784d-4b0e-bc3e-f05eefc17951/comments
+Content-Type: application/json
+
+{
+  "content": "나의 스터디 파트너!"
+}
+
+###
+GET http://localhost:3001/products/7f70481b-784d-4b0e-bc3e-f05eefc17951/comments
+
+###
+DELETE http://localhost:3001/products/7f70481b-784d-4b0e-bc3e-f05eefc17951/comments

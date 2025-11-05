@@ -1,12 +1,12 @@
 import express from 'express';
 import { Prisma, PrismaClient } from '@prisma/client';
 import { assert } from 'superstruct';
-import { CreateArticle, PatchArticle } from './structs.js';
+import { CreateImage } from '../structs/structs.js';
 
 const app = express();
 app.use(express.json());
 
-const articleRouter = express.Router();
+const imageRouter = express.Router();
 const prisma = new PrismaClient();
 
 function asyncHandler(handler) {
@@ -33,20 +33,20 @@ function asyncHandler(handler) {
     }
   };
 }
-// title, content에 포함된 단어로 검색 가능
-articleRouter
+
+imageRouter
   .route('/')
   .post(
     asyncHandler(async (req, res) => {
       const data = req.body;
-      assert(data, CreateArticle);
-      const article = await prisma.article.create({ data });
-      res.send(article);
+      assert(data, CreateImage);
+      const image = await prisma.image.create({ data });
+      res.send(image);
     })
   )
   .get(
     asyncHandler(async (req, res) => {
-      const { offset = 0, limit = 0, order = 'recent', title, content } = req.query;
+      const { offset = 0, limit = 0, order = 'recent' } = req.query;
       let orderBy;
       if (order !== 'recent') {
         orderBy = { createdAt: 'asc' };
@@ -54,56 +54,42 @@ articleRouter
         orderBy = { createdAt: 'desc' };
       }
 
-      const articles = await prisma.article.findMany({
-        where: { title: { contains: title }, content: { contains: content } },
+      const images = await prisma.image.findMany({
         orderBy,
         skip: parseInt(offset),
-        take: parseInt(limit) || undefined,
-        //omit: { updatedAt: true }
-        select: {
-          id: true,
-          title: true,
-          content: true,
-          createdAt: true
-        }
+        take: parseInt(limit) || undefined
       });
-      res.send(articles);
+      res.send(images);
     })
   );
 
-articleRouter
+imagetRouter
   .route('/:id')
   .get(
     asyncHandler(async (req, res) => {
-      const id = req.params.id;
-      const article = await prisma.article.findFirstOrThrow({
-        where: { id },
-        select: {
-          id: true,
-          title: true,
-          content: true,
-          createdAt: true
-        }
+      const { id } = req.params;
+      const image = await prisma.image.findFirstOrThrow({
+        where: { id }
       });
-      res.send(article);
+      res.send(image);
     })
   )
   .patch(
     asyncHandler(async (req, res) => {
       const { id } = req.params;
       const data = req.body;
-      assert(data, PatchArticle);
-      const article = await prisma.article.update({ where: { id }, data });
-      res.send(article);
+      assert(data, PatchImage);
+      const image = await prisma.image.update({ where: { id }, data });
+      res.send(image);
     })
   )
   .delete(
     asyncHandler(async (req, res) => {
-      const id = req.params.id;
-      const article = await prisma.article.delete({ where: { id } });
-      console.log('Article deleted.');
-      res.send(article);
+      const { id } = req.params;
+      const image = await prisma.image.delete({ where: { id } });
+      console.log('Image deleted.');
+      res.send(image);
     })
   );
 
-export default articleRouter;
+export default productRouter;

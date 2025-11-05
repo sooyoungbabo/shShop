@@ -1,0 +1,43 @@
+GET http://localhost:3001/articles
+
+###
+GET http://localhost:3001/articles?title=나인
+
+###
+GET http://localhost:3001/articles/5002a911-3cae-423e-88c6-008f394b81c9
+
+###
+POST http://localhost:3001/articles
+Content-Type: application/json
+
+{
+  "title": "전망좋은 방",
+  "content": "20세기 초중반 영국 근교의 마을에서 보수적으로 자라난 소녀가 현란한 색채와 격정이 넘치는 이태리 여행에서 성에 눈뜨는 과정을 코믹하게 묘사한 작품"
+}
+
+###
+PATCH http://localhost:3001/articles/5002a911-3cae-423e-88c6-008f394b81c9
+Content-Type: application/json
+
+{
+  "content": "20세기 초중반 조신한 영국 처녀가 격정이 넘치는 이태리를 여행하며 성에 눈뜨는 과정을 코믹하게 묘사한 작품"
+}
+
+###
+DELETE http://localhost:3001/articles/c6659fa0-3da1-416d-bc75-e10523a7e5f3
+
+
+###
+POST http://localhost:3001/articles/5002a911-3cae-423e-88c6-008f394b81c9/comments
+Content-Type: application/json
+
+{
+  //"content": "헬레나 본 햄 카터가 어렸을 때였죠. 너무 사랑스러운 캐릭터"
+    "content": "여주가 유명한 헬레나 본 햄 카터. 영계였을 때라 너무 사랑스러웠어요"
+}
+
+###
+GET http://localhost:3001/articles/5002a911-3cae-423e-88c6-008f394b81c9/comments
+
+###
+DELETE http://localhost:3001/articles/5002a911-3cae-423e-88c6-008f394b81c9/comments

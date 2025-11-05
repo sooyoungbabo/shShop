@@ -1,0 +1,25 @@
+GET http://localhost:3001/comments
+
+
+###
+GET http://localhost:3001/comments/1
+
+###
+POST http://localhost:3001/comments
+Content-Type: application/json
+
+{
+  "content": "멋져요~"
+}
+
+###
+PATCH http://localhost:3001/comments/1
+Content-Type: application/json
+
+{
+  "content": "정말 멋지네요~"
+}
+
+###
+DELETE http://localhost:3001/comments/1
+

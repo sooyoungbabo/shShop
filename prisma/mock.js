@@ -1,110 +1,3 @@
-export const USERS = [
-  {
-    id: 'b8f11e76-0a9e-4b3f-bccf-8d9b4fbf331e',
-    email: 'honggd@example.com',
-    firstName: '길동',
-    lastName: '홍',
-    address: '서울특별시 강남구 무실로 123번길 45-6',
-    createdAt: '2023-07-16T09:00:00Z',
-    updatedAt: '2023-07-16T09:00:00Z',
-  },
-  {
-    id: '6c3a18b0-11c5-4d97-9019-9ebe3c4d1317',
-    email: 'kimyh@example.com',
-    firstName: '영희',
-    lastName: '김',
-    address: '경기도 고양시 봉명로 789번길 21',
-    createdAt: '2023-07-16T09:30:00Z',
-    updatedAt: '2023-07-16T09:30:00Z',
-    savedProducts: {
-      connect: [
-        { id: 'f8013040-b076-4dc4-8677-11be9a17162f' },
-        { id: 'a4ff201c-48f7-4963-b317-2e9e4e3e43b7' },
-        { id: '7f70481b-784d-4b0e-bc3e-f05eefc17951' },
-        { id: '4e0d9424-3a16-4a5e-9725-0e9d2f9722b3' },
-      ],
-    },
-  },
-  {
-    id: 'fd3ae0a5-8dd5-40b6-b8fd-48870f731db1',
-    email: 'lee.cs@example.com',
-    firstName: '철수',
-    lastName: '이',
-    address: '인천광역시 남구 향교로 567번길 8-2',
-    createdAt: '2023-07-16T10:00:00Z',
-    updatedAt: '2023-07-16T10:00:00Z',
-    savedProducts: {
-      connect: [
-        { id: '43c62d5b-6e66-4d1c-9f47-14d1a1970fd1' },
-        { id: '80e7b377-df80-4410-9a14-622ea3cc58e0' },
-        { id: '7f70481b-784d-4b0e-bc3e-f05eefc17951' },
-      ],
-    },
-  },
-  {
-    id: '70e1e61d-f2ae-4d7d-bf8f-d65eafdb6a45',
-    email: 'parkjy@example.com',
-    firstName: '지영',
-    lastName: '박',
-    address: '대전광역시 중구 성남로 432번길 76',
-    createdAt: '2023-07-16T10:30:00Z',
-    updatedAt: '2023-07-16T10:30:00Z',
-  },
-  {
-    id: '73cb9639-d8b7-4f11-9a62-53f4187f3f11',
-    email: 'jungminsoo@example.com',
-    firstName: '민수',
-    lastName: '정',
-    address: '부산광역시 동래구 수림로 987번길 33-7',
-    createdAt: '2023-07-16T11:00:00Z',
-    updatedAt: '2023-07-16T11:00:00Z',
-    savedProducts: {
-      connect: [
-        { id: 'be13a617-8f0e-4806-82f7-149a6e12f1a7' },
-        { id: 'd3f74179-2cb5-4e51-8f3a-57f65c1d4e6e' },
-      ],
-    },
-  },
-];
-
-export const USER_PREFERENCES = [
-  {
-    id: '936f5ea4-6e6c-4e5e-91a3-78f5644e1f9a',
-    receiveEmail: true,
-    createdAt: '2023-07-16T09:00:00Z',
-    updatedAt: '2023-07-16T09:00:00Z',
-    userId: 'b8f11e76-0a9e-4b3f-bccf-8d9b4fbf331e',
-  },
-  {
-    id: 'e1c1e5c1-5312-4f7b-a3d6-4cbb2b4f8828',
-    receiveEmail: false,
-    createdAt: '2023-07-16T09:30:00Z',
-    updatedAt: '2023-07-16T09:30:00Z',
-    userId: '6c3a18b0-11c5-4d97-9019-9ebe3c4d1317',
-  },
-  {
-    id: '6c03856e-5b25-4f89-9d20-68a8f8e33c46',
-    receiveEmail: true,
-    createdAt: '2023-07-16T10:00:00Z',
-    updatedAt: '2023-07-16T10:00:00Z',
-    userId: 'fd3ae0a5-8dd5-40b6-b8fd-48870f731db1',
-  },
-  {
-    id: '88d9c8c4-bf9d-4a40-a60a-82dc23e009b0',
-    receiveEmail: false,
-    createdAt: '2023-07-16T10:30:00Z',
-    updatedAt: '2023-07-16T10:30:00Z',
-    userId: '70e1e61d-f2ae-4d7d-bf8f-d65eafdb6a45',
-  },
-  {
-    id: '0b5a06cd-5d25-4b3c-bc52-b06ee7b17662',
-    receiveEmail: true,
-    createdAt: '2023-07-16T11:00:00Z',
-    updatedAt: '2023-07-16T11:00:00Z',
-    userId: '73cb9639-d8b7-4f11-9a62-53f4187f3f11',
-  },
-];
-
 export const PRODUCTS = [
   {
     id: 'f8013040-b076-4dc4-8677-11be9a17162f',
@@ -115,7 +8,7 @@ export const PRODUCTS = [
     price: 38000,
     stock: 20,
     createdAt: '2023-07-14T10:00:00Z',
-    updatedAt: '2023-07-14T10:00:00Z',
+    updatedAt: '2023-07-14T10:00:00Z'
   },
   {
     id: 'd2ff3048-83bc-425a-8ad3-d6d9af1c7c6d',
@@ -126,7 +19,7 @@ export const PRODUCTS = [
     price: 75000,
     stock: 15,
     createdAt: '2023-07-14T10:30:00Z',
-    updatedAt: '2023-07-14T10:30:00Z',
+    updatedAt: '2023-07-14T10:30:00Z'
   },
   {
     id: '7f70481b-784d-4b0e-bc3e-f05eefc17951',
@@ -137,7 +30,7 @@ export const PRODUCTS = [
     price: 320000,
     stock: 10,
     createdAt: '2023-07-14T11:00:00Z',
-    updatedAt: '2023-07-14T11:00:00Z',
+    updatedAt: '2023-07-14T11:00:00Z'
   },
   {
     id: '4e0d9424-3a16-4a5e-9725-0e9d2f9722b3',
@@ -148,7 +41,7 @@ export const PRODUCTS = [
     price: 65000,
     stock: 8,
     createdAt: '2023-07-14T11:30:00Z',
-    updatedAt: '2023-07-14T11:30:00Z',
+    updatedAt: '2023-07-14T11:30:00Z'
   },
   {
     id: '39c3fd4a-dbd5-4ab1-8e0b-58ea31b8a2d3',
@@ -159,7 +52,7 @@ export const PRODUCTS = [
     price: 850000,
     stock: 3,
     createdAt: '2023-07-14T12:00:00Z',
-    updatedAt: '2023-07-14T12:00:00Z',
+    updatedAt: '2023-07-14T12:00:00Z'
   },
   {
     id: 'c2d4a2e3-7c2a-4f80-bff7-8ebcbacccf2c',
@@ -170,7 +63,7 @@ export const PRODUCTS = [
     price: 1249000,
     stock: 8,
     createdAt: '2023-07-14T14:00:00Z',
-    updatedAt: '2023-07-14T14:00:00Z',
+    updatedAt: '2023-07-14T14:00:00Z'
   },
   {
     id: '43c62d5b-6e66-4d1c-9f47-14d1a1970fd1',
@@ -181,7 +74,7 @@ export const PRODUCTS = [
     price: 1399000,
     stock: 12,
     createdAt: '2023-07-14T14:30:00Z',
-    updatedAt: '2023-07-14T14:30:00Z',
+    updatedAt: '2023-07-14T14:30:00Z'
   },
   {
     id: '6e9d4e63-7246-4fc5-bf33-3e7f32fe9c02',
@@ -192,7 +85,7 @@ export const PRODUCTS = [
     price: 169000,
     stock: 10,
     createdAt: '2023-07-14T15:00:00Z',
-    updatedAt: '2023-07-14T15:00:00Z',
+    updatedAt: '2023-07-14T15:00:00Z'
   },
   {
     id: '80e7b377-df80-4410-9a14-622ea3cc58e0',
@@ -203,7 +96,7 @@ export const PRODUCTS = [
     price: 1999000,
     stock: 10,
     createdAt: '2023-07-14T15:30:00Z',
-    updatedAt: '2023-07-14T15:30:00Z',
+    updatedAt: '2023-07-14T15:30:00Z'
   },
   {
     id: 'a4ff201c-48f7-4963-b317-2e9e4e3e43b7',
@@ -214,7 +107,7 @@ export const PRODUCTS = [
     price: 35000,
     stock: 20,
     createdAt: '2023-07-14T16:00:00Z',
-    updatedAt: '2023-07-14T16:00:00Z',
+    updatedAt: '2023-07-14T16:00:00Z'
   },
   {
     id: 'c6a5975a-42e7-4f7f-8b7c-72714d59f44a',
@@ -225,7 +118,7 @@ export const PRODUCTS = [
     price: 750000,
     stock: 15,
     createdAt: '2023-07-14T16:30:00Z',
-    updatedAt: '2023-07-14T16:30:00Z',
+    updatedAt: '2023-07-14T16:30:00Z'
   },
   {
     id: 'a33d441f-57a9-4618-8f46-07e7418ef3c9',
@@ -236,7 +129,7 @@ export const PRODUCTS = [
     price: 1799000,
     stock: 5,
     createdAt: '2023-07-14T17:00:00Z',
-    updatedAt: '2023-07-14T17:00:00Z',
+    updatedAt: '2023-07-14T17:00:00Z'
   },
   {
     id: 'f6c2a70e-32a4-4bcf-b183-8a33d97fb587',
@@ -247,7 +140,7 @@ export const PRODUCTS = [
     price: 28000,
     stock: 15,
     createdAt: '2023-07-14T17:30:00Z',
-    updatedAt: '2023-07-14T17:30:00Z',
+    updatedAt: '2023-07-14T17:30:00Z'
   },
   {
     id: 'e700c4be-6e0c-40fd-bb47-2ab2b2e9270d',
@@ -258,7 +151,7 @@ export const PRODUCTS = [
     price: 59000,
     stock: 10,
     createdAt: '2023-07-14T18:00:00Z',
-    updatedAt: '2023-07-14T18:00:00Z',
+    updatedAt: '2023-07-14T18:00:00Z'
   },
   {
     id: 'be13a617-8f0e-4806-82f7-149a6e12f1a7',
@@ -269,7 +162,7 @@ export const PRODUCTS = [
     price: 1999000,
     stock: 8,
     createdAt: '2023-07-14T18:30:00Z',
-    updatedAt: '2023-07-14T18:30:00Z',
+    updatedAt: '2023-07-14T18:30:00Z'
   },
   {
     id: 'd3f74179-2cb5-4e51-8f3a-57f65c1d4e6e',
@@ -280,7 +173,7 @@ export const PRODUCTS = [
     price: 29000,
     stock: 10,
     createdAt: '2023-07-15T10:00:00Z',
-    updatedAt: '2023-07-15T10:00:00Z',
+    updatedAt: '2023-07-15T10:00:00Z'
   },
   {
     id: 'dc74c065-5237-4d5b-86d1-d4eeb8a4d1fd',
@@ -291,7 +184,7 @@ export const PRODUCTS = [
     price: 69000,
     stock: 15,
     createdAt: '2023-07-15T10:30:00Z',
-    updatedAt: '2023-07-15T10:30:00Z',
+    updatedAt: '2023-07-15T10:30:00Z'
   },
   {
     id: '93a1c570-ee10-4961-bbdf-68001efddc49',
@@ -302,7 +195,7 @@ export const PRODUCTS = [
     price: 99000,
     stock: 8,
     createdAt: '2023-07-15T11:00:00Z',
-    updatedAt: '2023-07-15T11:00:00Z',
+    updatedAt: '2023-07-15T11:00:00Z'
   },
   {
     id: 'd5d60337-ccf6-404f-b615-982f2b223ab3',
@@ -313,7 +206,7 @@ export const PRODUCTS = [
     price: 129000,
     stock: 12,
     createdAt: '2023-07-15T11:30:00Z',
-    updatedAt: '2023-07-15T11:30:00Z',
+    updatedAt: '2023-07-15T11:30:00Z'
   },
   {
     id: '209b2a1c-c6e9-4461-a17a-c8a8f141f9f9',
@@ -324,7 +217,7 @@ export const PRODUCTS = [
     price: 499000,
     stock: 5,
     createdAt: '2023-07-15T12:00:00Z',
-    updatedAt: '2023-07-15T12:00:00Z',
+    updatedAt: '2023-07-15T12:00:00Z'
   },
   {
     id: 'b1782c1e-8ad2-45a7-90e6-50f61c4a8de9',
@@ -335,7 +228,7 @@ export const PRODUCTS = [
     price: 35000,
     stock: 5,
     createdAt: '2023-07-15T12:30:00Z',
-    updatedAt: '2023-07-15T12:30:00Z',
+    updatedAt: '2023-07-15T12:30:00Z'
   },
   {
     id: 'b2593dbd-5ea3-4376-9378-6d6e7a17e232',
@@ -346,7 +239,7 @@ export const PRODUCTS = [
     price: 19900,
     stock: 10,
     createdAt: '2023-07-15T13:00:00Z',
-    updatedAt: '2023-07-15T13:00:00Z',
+    updatedAt: '2023-07-15T13:00:00Z'
   },
   {
     id: 'c28a2eaf-4d87-4f9f-ae5b-cbcf73e24253',
@@ -357,7 +250,7 @@ export const PRODUCTS = [
     price: 25000,
     stock: 8,
     createdAt: '2023-07-15T13:30:00Z',
-    updatedAt: '2023-07-15T13:30:00Z',
+    updatedAt: '2023-07-15T13:30:00Z'
   },
   {
     id: 'e48d9e8b-6712-48ed-9ea2-2f7e150a2e48',
@@ -368,7 +261,7 @@ export const PRODUCTS = [
     price: 149000,
     stock: 20,
     createdAt: '2023-07-15T14:00:00Z',
-    updatedAt: '2023-07-15T14:00:00Z',
+    updatedAt: '2023-07-15T14:00:00Z'
   },
   {
     id: '64e7c9fc-49b6-4b20-9ce3-11a9487ed1e1',
@@ -379,7 +272,7 @@ export const PRODUCTS = [
     price: 69000,
     stock: 12,
     createdAt: '2023-07-15T14:30:00Z',
-    updatedAt: '2023-07-15T14:30:00Z',
+    updatedAt: '2023-07-15T14:30:00Z'
   },
   {
     id: 'e3f34fb9-2c4b-45c0-94b1-610e6cfe13a7',
@@ -390,7 +283,7 @@ export const PRODUCTS = [
     price: 65000,
     stock: 15,
     createdAt: '2023-07-15T15:00:00Z',
-    updatedAt: '2023-07-15T15:00:00Z',
+    updatedAt: '2023-07-15T15:00:00Z'
   },
   {
     id: '4be1e6fd-2271-4f15-96e3-577c4a057c8b',
@@ -401,7 +294,7 @@ export const PRODUCTS = [
     price: 179000,
     stock: 8,
     createdAt: '2023-07-15T15:30:00Z',
-    updatedAt: '2023-07-15T15:30:00Z',
+    updatedAt: '2023-07-15T15:30:00Z'
   },
   {
     id: 'a4468fc1-3cfc-4c46-9ff9-2469b5f9e88a',
@@ -412,7 +305,7 @@ export const PRODUCTS = [
     price: 59000,
     stock: 12,
     createdAt: '2023-07-15T16:00:00Z',
-    updatedAt: '2023-07-15T16:00:00Z',
+    updatedAt: '2023-07-15T16:00:00Z'
   },
   {
     id: 'be07b27a-93e9-4d1a-8a54-133c0f04541e',
@@ -423,7 +316,7 @@ export const PRODUCTS = [
     price: 2299000,
     stock: 5,
     createdAt: '2023-07-15T16:30:00Z',
-    updatedAt: '2023-07-15T16:30:00Z',
+    updatedAt: '2023-07-15T16:30:00Z'
   },
   {
     id: 'de573676-2a27-4cfa-85a1-0e9dd3ed5315',
@@ -434,7 +327,7 @@ export const PRODUCTS = [
     price: 399000,
     stock: 5,
     createdAt: '2023-07-15T17:00:00Z',
-    updatedAt: '2023-07-15T17:00:00Z',
+    updatedAt: '2023-07-15T17:00:00Z'
   },
   {
     id: '9c6ebf9b-f666-44da-b79f-5f62517f55fc',
@@ -445,7 +338,7 @@ export const PRODUCTS = [
     price: 99000,
     stock: 5,
     createdAt: '2023-07-15T17:30:00Z',
-    updatedAt: '2023-07-15T17:30:00Z',
+    updatedAt: '2023-07-15T17:30:00Z'
   },
   {
     id: '17cc4f9c-1e71-4782-914a-c8a12dc6f94b',
@@ -456,7 +349,7 @@ export const PRODUCTS = [
     price: 89000,
     stock: 10,
     createdAt: '2023-07-15T18:00:00Z',
-    updatedAt: '2023-07-15T18:00:00Z',
+    updatedAt: '2023-07-15T18:00:00Z'
   },
   {
     id: 'c1b31e2b-6d6a-4b24-b3ea-d0746f9cc6ea',
@@ -467,7 +360,7 @@ export const PRODUCTS = [
     price: 79000,
     stock: 8,
     createdAt: '2023-07-15T18:30:00Z',
-    updatedAt: '2023-07-15T18:30:00Z',
+    updatedAt: '2023-07-15T18:30:00Z'
   },
   {
     id: '5ae4a823-0076-4ae0-af49-7f3eb0002c0a',
@@ -478,7 +371,7 @@ export const PRODUCTS = [
     price: 35000,
     stock: 12,
     createdAt: '2023-07-15T19:00:00Z',
-    updatedAt: '2023-07-15T19:00:00Z',
+    updatedAt: '2023-07-15T19:00:00Z'
   },
   {
     id: '50ce94ef-cb04-4c2f-bad4-d36b18956b9a',
@@ -489,7 +382,7 @@ export const PRODUCTS = [
     price: 139000,
     stock: 15,
     createdAt: '2023-07-15T19:30:00Z',
-    updatedAt: '2023-07-15T19:30:00Z',
+    updatedAt: '2023-07-15T19:30:00Z'
   },
   {
     id: 'd6c5e7d5-225f-4f6d-ba17-6f79d32726db',
@@ -500,7 +393,7 @@ export const PRODUCTS = [
     price: 189000,
     stock: 10,
     createdAt: '2023-07-15T20:00:00Z',
-    updatedAt: '2023-07-15T20:00:00Z',
+    updatedAt: '2023-07-15T20:00:00Z'
   },
   {
     id: '9c2bc7ad-6f1e-491d-8d81-9ed78a805a20',
@@ -511,7 +404,7 @@ export const PRODUCTS = [
     price: 99000,
     stock: 15,
     createdAt: '2023-07-15T20:30:00Z',
-    updatedAt: '2023-07-15T20:30:00Z',
+    updatedAt: '2023-07-15T20:30:00Z'
   },
   {
     id: 'f8c95e63-ba05-4e2d-8a61-9e5b07d4ccdb',
@@ -522,7 +415,7 @@ export const PRODUCTS = [
     price: 249000,
     stock: 8,
     createdAt: '2023-07-15T21:00:00Z',
-    updatedAt: '2023-07-15T21:00:00Z',
+    updatedAt: '2023-07-15T21:00:00Z'
   },
   {
     id: 'e6c6aeed-209d-4f3d-907e-9d208d5bcfd2',
@@ -533,7 +426,7 @@ export const PRODUCTS = [
     price: 1399000,
     stock: 5,
     createdAt: '2023-07-15T21:30:00Z',
-    updatedAt: '2023-07-15T21:30:00Z',
+    updatedAt: '2023-07-15T21:30:00Z'
   },
   {
     id: 'a81dd4df-5bc4-44b5-89a0-769a7b6d3cc0',
@@ -544,7 +437,7 @@ export const PRODUCTS = [
     price: 299000,
     stock: 5,
     createdAt: '2023-07-15T22:00:00Z',
-    updatedAt: '2023-07-15T22:00:00Z',
+    updatedAt: '2023-07-15T22:00:00Z'
   },
   {
     id: '6e890e6d-df7b-4c50-8d3e-59a32c48ae51',
@@ -555,7 +448,7 @@ export const PRODUCTS = [
     price: 59000,
     stock: 10,
     createdAt: '2023-07-15T22:30:00Z',
-    updatedAt: '2023-07-15T22:30:00Z',
+    updatedAt: '2023-07-15T22:30:00Z'
   },
   {
     id: '7a14ccf9-8b08-4e9a-8f0f-624dcf7d6d74',
@@ -566,7 +459,7 @@ export const PRODUCTS = [
     price: 149000,
     stock: 12,
     createdAt: '2023-07-15T23:00:00Z',
-    updatedAt: '2023-07-15T23:00:00Z',
+    updatedAt: '2023-07-15T23:00:00Z'
   },
   {
     id: 'b5d2d3ad-7d92-4f17-a1e5-2260a2d69d0d',
@@ -577,7 +470,7 @@ export const PRODUCTS = [
     price: 99000,
     stock: 10,
     createdAt: '2023-07-16T00:00:00Z',
-    updatedAt: '2023-07-16T00:00:00Z',
+    updatedAt: '2023-07-16T00:00:00Z'
   },
 
   {
@@ -589,7 +482,7 @@ export const PRODUCTS = [
     price: 45000,
     stock: 15,
     createdAt: '2023-07-16T00:30:00Z',
-    updatedAt: '2023-07-16T00:30:00Z',
+    updatedAt: '2023-07-16T00:30:00Z'
   },
   {
     id: 'f6a63b92-870e-4b54-8f80-7ae5e0b5be78',
@@ -600,7 +493,7 @@ export const PRODUCTS = [
     price: 229000,
     stock: 10,
     createdAt: '2023-07-16T01:00:00Z',
-    updatedAt: '2023-07-16T01:00:00Z',
+    updatedAt: '2023-07-16T01:00:00Z'
   },
   {
     id: 'd0ccffae-fa61-4e2f-88ff-2253e838bf2d',
@@ -611,7 +504,7 @@ export const PRODUCTS = [
     price: 29000,
     stock: 12,
     createdAt: '2023-07-16T01:30:00Z',
-    updatedAt: '2023-07-16T01:30:00Z',
+    updatedAt: '2023-07-16T01:30:00Z'
   },
   {
     id: '8a131b86-7b3e-44c2-a02b-b17c69a2c780',
@@ -622,7 +515,7 @@ export const PRODUCTS = [
     price: 119000,
     stock: 8,
     createdAt: '2023-07-16T02:00:00Z',
-    updatedAt: '2023-07-16T02:00:00Z',
+    updatedAt: '2023-07-16T02:00:00Z'
   },
   {
     id: 'f8cb3992-c455-4c9a-9736-1f94a83b3e6f',
@@ -633,7 +526,7 @@ export const PRODUCTS = [
     price: 39000,
     stock: 15,
     createdAt: '2023-07-16T02:30:00Z',
-    updatedAt: '2023-07-16T02:30:00Z',
+    updatedAt: '2023-07-16T02:30:00Z'
   },
   {
     id: '78e5b047-f28e-4b3e-9c62-54c2d12565cd',
@@ -644,7 +537,7 @@ export const PRODUCTS = [
     price: 2000,
     stock: 50,
     createdAt: '2023-07-16T03:00:00Z',
-    updatedAt: '2023-07-16T03:00:00Z',
+    updatedAt: '2023-07-16T03:00:00Z'
   },
   {
     id: 'b8e3e8d9-0f39-4f2e-99a0-1c00c8f5d9e1',
@@ -655,7 +548,7 @@ export const PRODUCTS = [
     price: 5000,
     stock: 30,
     createdAt: '2023-07-16T03:30:00Z',
-    updatedAt: '2023-07-16T03:30:00Z',
+    updatedAt: '2023-07-16T03:30:00Z'
   },
   {
     id: '0d8e554a-84c0-4b9c-bdc3-d04b9bbf1344',
@@ -666,7 +559,7 @@ export const PRODUCTS = [
     price: 15000,
     stock: 20,
     createdAt: '2023-07-16T04:00:00Z',
-    updatedAt: '2023-07-16T04:00:00Z',
+    updatedAt: '2023-07-16T04:00:00Z'
   },
   {
     id: '1cc006a0-82a3-4e70-8d92-974d1ea9c3af',
@@ -677,7 +570,7 @@ export const PRODUCTS = [
     price: 59000,
     stock: 10,
     createdAt: '2023-07-16T04:30:00Z',
-    updatedAt: '2023-07-16T04:30:00Z',
+    updatedAt: '2023-07-16T04:30:00Z'
   },
   {
     id: '85fc2182-8b7f-47f1-8f3d-911e0a3c0582',
@@ -688,7 +581,7 @@ export const PRODUCTS = [
     price: 79000,
     stock: 8,
     createdAt: '2023-07-16T05:00:00Z',
-    updatedAt: '2023-07-16T05:00:00Z',
+    updatedAt: '2023-07-16T05:00:00Z'
   },
   {
     id: 'd9e3f6ae-04e5-4a7b-8c7c-2d582af08489',
@@ -699,7 +592,7 @@ export const PRODUCTS = [
     price: 289000,
     stock: 5,
     createdAt: '2023-07-16T05:30:00Z',
-    updatedAt: '2023-07-16T05:30:00Z',
+    updatedAt: '2023-07-16T05:30:00Z'
   },
   {
     id: '10f12b65-20f5-43d9-860e-faf4890e2a9e',
@@ -710,7 +603,7 @@ export const PRODUCTS = [
     price: 189000,
     stock: 5,
     createdAt: '2023-07-16T06:00:00Z',
-    updatedAt: '2023-07-16T06:00:00Z',
+    updatedAt: '2023-07-16T06:00:00Z'
   },
   {
     id: '6922d7f9-72d6-46fe-8b0e-890700aa8f13',
@@ -721,7 +614,7 @@ export const PRODUCTS = [
     price: 25000,
     stock: 10,
     createdAt: '2023-07-16T06:30:00Z',
-    updatedAt: '2023-07-16T06:30:00Z',
+    updatedAt: '2023-07-16T06:30:00Z'
   },
   {
     id: 'e5d7a4f3-9e21-4125-9e1c-216d5a226b74',
@@ -732,7 +625,7 @@ export const PRODUCTS = [
     price: 69000,
     stock: 8,
     createdAt: '2023-07-16T07:00:00Z',
-    updatedAt: '2023-07-16T07:00:00Z',
+    updatedAt: '2023-07-16T07:00:00Z'
   },
   {
     id: 'f751e63f-686d-42d4-898e-3ef6d4137908',
@@ -743,7 +636,7 @@ export const PRODUCTS = [
     price: 89000,
     stock: 5,
     createdAt: '2023-07-16T07:30:00Z',
-    updatedAt: '2023-07-16T07:30:00Z',
+    updatedAt: '2023-07-16T07:30:00Z'
   },
   {
     id: '1e112c02-7c92-4d52-b76e-485e41e3f64d',
@@ -754,7 +647,7 @@ export const PRODUCTS = [
     price: 79000,
     stock: 5,
     createdAt: '2023-07-16T08:00:00Z',
-    updatedAt: '2023-07-16T08:00:00Z',
+    updatedAt: '2023-07-16T08:00:00Z'
   },
   {
     id: '19a6ce8e-70ed-4e3c-832a-ba3541a7da15',
@@ -765,8 +658,8 @@ export const PRODUCTS = [
     price: 39000,
     stock: 15,
     createdAt: '2023-07-16T02:15:00Z',
-    updatedAt: '2023-07-16T02:15:00Z',
-  },
+    updatedAt: '2023-07-16T02:15:00Z'
+  }
 ];
 
 export const ORDERS = [
@@ -775,71 +668,71 @@ export const ORDERS = [
     status: 'PENDING',
     createdAt: '2023-07-16T09:00:00Z',
     updatedAt: '2023-07-16T09:00:00Z',
-    userId: 'b8f11e76-0a9e-4b3f-bccf-8d9b4fbf331e',
+    userId: 'b8f11e76-0a9e-4b3f-bccf-8d9b4fbf331e'
   },
   {
     id: '52933c6e-b118-445f-99f1-d2e07fd1c3d0',
     status: 'COMPLETE',
     createdAt: '2023-07-16T09:30:00Z',
     updatedAt: '2023-07-16T09:30:00Z',
-    userId: '6c3a18b0-11c5-4d97-9019-9ebe3c4d1317',
+    userId: '6c3a18b0-11c5-4d97-9019-9ebe3c4d1317'
   },
   {
     id: 'dedd2a7f-56c4-45b7-a37d-efdc1d2f518d',
     status: 'PENDING',
     createdAt: '2023-07-16T10:00:00Z',
     updatedAt: '2023-07-16T10:00:00Z',
-    userId: 'fd3ae0a5-8dd5-40b6-b8fd-48870f731db1',
+    userId: 'fd3ae0a5-8dd5-40b6-b8fd-48870f731db1'
   },
   {
     id: '7c5dd97a-b86b-4b7f-9da7-d6d9258f8d66',
     status: 'COMPLETE',
     createdAt: '2023-07-16T10:30:00Z',
     updatedAt: '2023-07-16T10:30:00Z',
-    userId: '70e1e61d-f2ae-4d7d-bf8f-d65eafdb6a45',
+    userId: '70e1e61d-f2ae-4d7d-bf8f-d65eafdb6a45'
   },
   {
     id: 'a03b7801-d6d9-456d-ba3e-0e73750bc6b2',
     status: 'PENDING',
     createdAt: '2023-07-16T11:00:00Z',
     updatedAt: '2023-07-16T11:00:00Z',
-    userId: '73cb9639-d8b7-4f11-9a62-53f4187f3f11',
+    userId: '73cb9639-d8b7-4f11-9a62-53f4187f3f11'
   },
   {
     id: 'ae7597de-6601-4a9e-8047-9dd9f6e57e94',
     status: 'COMPLETE',
     createdAt: '2023-07-16T11:30:00Z',
     updatedAt: '2023-07-16T11:30:00Z',
-    userId: 'b8f11e76-0a9e-4b3f-bccf-8d9b4fbf331e',
+    userId: 'b8f11e76-0a9e-4b3f-bccf-8d9b4fbf331e'
   },
   {
     id: 'e03c2d89-3623-4e4c-98f6-facbd1266023',
     status: 'PENDING',
     createdAt: '2023-07-16T12:00:00Z',
     updatedAt: '2023-07-16T12:00:00Z',
-    userId: '6c3a18b0-11c5-4d97-9019-9ebe3c4d1317',
+    userId: '6c3a18b0-11c5-4d97-9019-9ebe3c4d1317'
   },
   {
     id: 'b5f8e405-8b95-4cb2-8b3b-ee1573da4fc2',
     status: 'COMPLETE',
     createdAt: '2023-07-16T12:30:00Z',
     updatedAt: '2023-07-16T12:30:00Z',
-    userId: 'fd3ae0a5-8dd5-40b6-b8fd-48870f731db1',
+    userId: 'fd3ae0a5-8dd5-40b6-b8fd-48870f731db1'
   },
   {
     id: 'f5c8e4be-c69f-4e74-b48a-1671cbeff9a2',
     status: 'PENDING',
     createdAt: '2023-07-16T13:00:00Z',
     updatedAt: '2023-07-16T13:00:00Z',
-    userId: '70e1e61d-f2ae-4d7d-bf8f-d65eafdb6a45',
+    userId: '70e1e61d-f2ae-4d7d-bf8f-d65eafdb6a45'
   },
   {
     id: '329fcafe-4e1a-475a-9526-50c2678126db',
     status: 'COMPLETE',
     createdAt: '2023-07-16T13:30:00Z',
     updatedAt: '2023-07-16T13:30:00Z',
-    userId: '73cb9639-d8b7-4f11-9a62-53f4187f3f11',
-  },
+    userId: '73cb9639-d8b7-4f11-9a62-53f4187f3f11'
+  }
 ];
 
 export const ORDER_ITEMS = [
@@ -850,7 +743,7 @@ export const ORDER_ITEMS = [
     createdAt: '2023-07-16T09:00:00Z',
     updatedAt: '2023-07-16T09:00:00Z',
     orderId: '9fde1702-08d7-407c-8e6e-65e24f6a8237',
-    productId: 'f8013040-b076-4dc4-8677-11be9a17162f',
+    productId: 'f8013040-b076-4dc4-8677-11be9a17162f'
   },
   {
     id: 'a06a7eb9-75e3-4b13-81d5-9f1dd7a05175',
@@ -859,7 +752,7 @@ export const ORDER_ITEMS = [
     createdAt: '2023-07-16T09:30:00Z',
     updatedAt: '2023-07-16T09:30:00Z',
     orderId: '52933c6e-b118-445f-99f1-d2e07fd1c3d0',
-    productId: 'd2ff3048-83bc-425a-8ad3-d6d9af1c7c6d',
+    productId: 'd2ff3048-83bc-425a-8ad3-d6d9af1c7c6d'
   },
   {
     id: 'f753a259-1e26-4ed9-9e60-099a4a06af4f',
@@ -868,7 +761,7 @@ export const ORDER_ITEMS = [
     createdAt: '2023-07-16T10:00:00Z',
     updatedAt: '2023-07-16T10:00:00Z',
     orderId: 'dedd2a7f-56c4-45b7-a37d-efdc1d2f518d',
-    productId: '7f70481b-784d-4b0e-bc3e-f05eefc17951',
+    productId: '7f70481b-784d-4b0e-bc3e-f05eefc17951'
   },
   {
     id: '1fc98d4c-7571-4d1a-8808-4d76473f95e0',
@@ -877,7 +770,7 @@ export const ORDER_ITEMS = [
     createdAt: '2023-07-16T10:30:00Z',
     updatedAt: '2023-07-16T10:30:00Z',
     orderId: '7c5dd97a-b86b-4b7f-9da7-d6d9258f8d66',
-    productId: '4e0d9424-3a16-4a5e-9725-0e9d2f9722b3',
+    productId: '4e0d9424-3a16-4a5e-9725-0e9d2f9722b3'
   },
   {
     id: 'ab8e97f4-10ae-4ce6-a06d-d638d8b7efc6',
@@ -886,7 +779,7 @@ export const ORDER_ITEMS = [
     createdAt: '2023-07-16T11:00:00Z',
     updatedAt: '2023-07-16T11:00:00Z',
     orderId: 'a03b7801-d6d9-456d-ba3e-0e73750bc6b2',
-    productId: '39c3fd4a-dbd5-4ab1-8e0b-58ea31b8a2d3',
+    productId: '39c3fd4a-dbd5-4ab1-8e0b-58ea31b8a2d3'
   },
   {
     id: 'f161aa17-860e-4be5-87f5-b6097b5d493e',
@@ -895,7 +788,7 @@ export const ORDER_ITEMS = [
     createdAt: '2023-07-16T11:30:00Z',
     updatedAt: '2023-07-16T11:30:00Z',
     orderId: 'a03b7801-d6d9-456d-ba3e-0e73750bc6b2',
-    productId: 'c2d4a2e3-7c2a-4f80-bff7-8ebcbacccf2c',
+    productId: 'c2d4a2e3-7c2a-4f80-bff7-8ebcbacccf2c'
   },
   {
     id: 'e5f7d938-b39f-4d48-9eb9-af438b564c7e',
@@ -904,7 +797,7 @@ export const ORDER_ITEMS = [
     createdAt: '2023-07-16T12:00:00Z',
     updatedAt: '2023-07-16T12:00:00Z',
     orderId: 'ae7597de-6601-4a9e-8047-9dd9f6e57e94',
-    productId: '43c62d5b-6e66-4d1c-9f47-14d1a1970fd1',
+    productId: '43c62d5b-6e66-4d1c-9f47-14d1a1970fd1'
   },
   {
     id: 'b689cc3e-7174-4db6-9267-ba9f1a271fc7',
@@ -913,7 +806,7 @@ export const ORDER_ITEMS = [
     createdAt: '2023-07-16T12:30:00Z',
     updatedAt: '2023-07-16T12:30:00Z',
     orderId: 'ae7597de-6601-4a9e-8047-9dd9f6e57e94',
-    productId: '6e9d4e63-7246-4fc5-bf33-3e7f32fe9c02',
+    productId: '6e9d4e63-7246-4fc5-bf33-3e7f32fe9c02'
   },
   {
     id: 'f5c377d3-9fe5-437b-999b-402d6e77a719',
@@ -922,7 +815,7 @@ export const ORDER_ITEMS = [
     createdAt: '2023-07-16T13:00:00Z',
     updatedAt: '2023-07-16T13:00:00Z',
     orderId: 'e03c2d89-3623-4e4c-98f6-facbd1266023',
-    productId: '80e7b377-df80-4410-9a14-622ea3cc58e0',
+    productId: '80e7b377-df80-4410-9a14-622ea3cc58e0'
   },
   {
     id: 'ff9db6b9-50c0-4a25-8b46-bdb82b2fcf02',
@@ -931,7 +824,7 @@ export const ORDER_ITEMS = [
     createdAt: '2023-07-16T13:30:00Z',
     updatedAt: '2023-07-16T13:30:00Z',
     orderId: 'e03c2d89-3623-4e4c-98f6-facbd1266023',
-    productId: 'a4ff201c-48f7-4963-b317-2e9e4e3e43b7',
+    productId: 'a4ff201c-48f7-4963-b317-2e9e4e3e43b7'
   },
   {
     id: '8c714670-2772-4aae-bc75-ee11f272e8db',
@@ -940,7 +833,7 @@ export const ORDER_ITEMS = [
     createdAt: '2023-07-16T14:00:00Z',
     updatedAt: '2023-07-16T14:00:00Z',
     orderId: 'b5f8e405-8b95-4cb2-8b3b-ee1573da4fc2',
-    productId: 'c6a5975a-42e7-4f7f-8b7c-72714d59f44a',
+    productId: 'c6a5975a-42e7-4f7f-8b7c-72714d59f44a'
   },
   {
     id: 'e5dcdb0c-7837-4a3d-97a3-8fc3ae4f19d4',
@@ -949,7 +842,7 @@ export const ORDER_ITEMS = [
     createdAt: '2023-07-16T14:30:00Z',
     updatedAt: '2023-07-16T14:30:00Z',
     orderId: 'b5f8e405-8b95-4cb2-8b3b-ee1573da4fc2',
-    productId: 'a33d441f-57a9-4618-8f46-07e7418ef3c9',
+    productId: 'a33d441f-57a9-4618-8f46-07e7418ef3c9'
   },
   {
     id: '2e3fc058-d77e-4743-a5ce-81cb770f367d',
@@ -958,7 +851,7 @@ export const ORDER_ITEMS = [
     createdAt: '2023-07-16T15:00:00Z',
     updatedAt: '2023-07-16T15:00:00Z',
     orderId: 'f5c8e4be-c69f-4e74-b48a-1671cbeff9a2',
-    productId: 'f6c2a70e-32a4-4bcf-b183-8a33d97fb587',
+    productId: 'f6c2a70e-32a4-4bcf-b183-8a33d97fb587'
   },
   {
     id: 'e83c30b7-0988-4fe1-a4f7-535da83bb042',
@@ -967,7 +860,7 @@ export const ORDER_ITEMS = [
     createdAt: '2023-07-16T15:30:00Z',
     updatedAt: '2023-07-16T15:30:00Z',
     orderId: 'f5c8e4be-c69f-4e74-b48a-1671cbeff9a2',
-    productId: 'e700c4be-6e0c-40fd-bb47-2ab2b2e9270d',
+    productId: 'e700c4be-6e0c-40fd-bb47-2ab2b2e9270d'
   },
   {
     id: 'ef69be07-6a91-4c47-a638-027e33bda9c6',
@@ -976,7 +869,7 @@ export const ORDER_ITEMS = [
     createdAt: '2023-07-16T16:00:00Z',
     updatedAt: '2023-07-16T16:00:00Z',
     orderId: '329fcafe-4e1a-475a-9526-50c2678126db',
-    productId: 'be13a617-8f0e-4806-82f7-149a6e12f1a7',
+    productId: 'be13a617-8f0e-4806-82f7-149a6e12f1a7'
   },
   {
     id: 'b7f117e7-1283-4964-8358-fc6a438bfc7f',
@@ -985,7 +878,7 @@ export const ORDER_ITEMS = [
     createdAt: '2023-07-14T09:00:01Z',
     updatedAt: '2023-07-14T09:00:01Z',
     orderId: '9fde1702-08d7-407c-8e6e-65e24f6a8237',
-    productId: '6e890e6d-df7b-4c50-8d3e-59a32c48ae51',
+    productId: '6e890e6d-df7b-4c50-8d3e-59a32c48ae51'
   },
   {
     id: 'a8ee9e47-4b30-495e-92ab-4e84903c9cfd',
@@ -994,7 +887,7 @@ export const ORDER_ITEMS = [
     createdAt: '2023-07-14T09:00:01Z',
     updatedAt: '2023-07-14T09:00:01Z',
     orderId: '7c5dd97a-b86b-4b7f-9da7-d6d9258f8d66',
-    productId: 'b1782c1e-8ad2-45a7-90e6-50f61c4a8de9',
+    productId: 'b1782c1e-8ad2-45a7-90e6-50f61c4a8de9'
   },
   {
     id: 'eeed5dbf-4ae3-4f8b-8a83-9eadd7d5364b',
@@ -1003,7 +896,7 @@ export const ORDER_ITEMS = [
     createdAt: '2023-07-14T09:00:01Z',
     updatedAt: '2023-07-14T09:00:02Z',
     orderId: '52933c6e-b118-445f-99f1-d2e07fd1c3d0',
-    productId: 'd6c5e7d5-225f-4f6d-ba17-6f79d32726db',
+    productId: 'd6c5e7d5-225f-4f6d-ba17-6f79d32726db'
   },
   {
     id: 'd1f42fa1-17e4-4082-a5e7-988f1d3a12c5',
@@ -1012,7 +905,7 @@ export const ORDER_ITEMS = [
     createdAt: '2023-07-14T09:00:02Z',
     updatedAt: '2023-07-14T09:00:02Z',
     orderId: 'dedd2a7f-56c4-45b7-a37d-efdc1d2f518d',
-    productId: '9c2bc7ad-6f1e-491d-8d81-9ed78a805a20',
+    productId: '9c2bc7ad-6f1e-491d-8d81-9ed78a805a20'
   },
   {
     id: 'e5a5a77a-aa8b-43a5-8a4e-2f9dd89831f5',
@@ -1021,7 +914,7 @@ export const ORDER_ITEMS = [
     createdAt: '2023-07-14T09:00:02Z',
     updatedAt: '2023-07-14T09:00:02Z',
     orderId: 'a03b7801-d6d9-456d-ba3e-0e73750bc6b2',
-    productId: '5ae4a823-0076-4ae0-af49-7f3eb0002c0a',
+    productId: '5ae4a823-0076-4ae0-af49-7f3eb0002c0a'
   },
   {
     id: 'd61d2aaf-64a1-4c45-b0ea-08ad7114e27b',
@@ -1030,7 +923,7 @@ export const ORDER_ITEMS = [
     createdAt: '2023-07-14T09:00:02Z',
     updatedAt: '2023-07-14T09:00:02Z',
     orderId: '7c5dd97a-b86b-4b7f-9da7-d6d9258f8d66',
-    productId: 'b5d2d3ad-7d92-4f17-a1e5-2260a2d69d0d',
+    productId: 'b5d2d3ad-7d92-4f17-a1e5-2260a2d69d0d'
   },
   {
     id: '3f4c686b-54c7-4076-8e17-d48b4a4fd53e',
@@ -1039,7 +932,7 @@ export const ORDER_ITEMS = [
     createdAt: '2023-07-14T09:00:02Z',
     updatedAt: '2023-07-14T09:00:02Z',
     orderId: 'dedd2a7f-56c4-45b7-a37d-efdc1d2f518d',
-    productId: 'c28a2eaf-4d87-4f9f-ae5b-cbcf73e24253',
+    productId: 'c28a2eaf-4d87-4f9f-ae5b-cbcf73e24253'
   },
   {
     id: '3835b76a-77ef-4fd1-91bc-ee67065130b7',
@@ -1048,7 +941,7 @@ export const ORDER_ITEMS = [
     createdAt: '2023-07-14T09:00:02Z',
     updatedAt: '2023-07-14T09:00:02Z',
     orderId: 'f5c8e4be-c69f-4e74-b48a-1671cbeff9a2',
-    productId: 'be07b27a-93e9-4d1a-8a54-133c0f04541e',
+    productId: 'be07b27a-93e9-4d1a-8a54-133c0f04541e'
   },
   {
     id: 'd27c1890-ba7e-4cb3-91fb-977b0b8ff77b',
@@ -1057,7 +950,7 @@ export const ORDER_ITEMS = [
     createdAt: '2023-07-14T09:00:02Z',
     updatedAt: '2023-07-14T09:00:02Z',
     orderId: 'dedd2a7f-56c4-45b7-a37d-efdc1d2f518d',
-    productId: 'de573676-2a27-4cfa-85a1-0e9dd3ed5315',
+    productId: 'de573676-2a27-4cfa-85a1-0e9dd3ed5315'
   },
   {
     id: 'e41bcab5-b408-4428-9a5a-b6f70f6a86a9',
@@ -1066,7 +959,7 @@ export const ORDER_ITEMS = [
     createdAt: '2023-07-14T09:00:02Z',
     updatedAt: '2023-07-14T09:00:02Z',
     orderId: 'a03b7801-d6d9-456d-ba3e-0e73750bc6b2',
-    productId: '9c6ebf9b-f666-44da-b79f-5f62517f55fc',
+    productId: '9c6ebf9b-f666-44da-b79f-5f62517f55fc'
   },
   {
     id: '06d69334-8003-415f-8ad9-bd78bbf25512',
@@ -1075,7 +968,7 @@ export const ORDER_ITEMS = [
     createdAt: '2023-07-14T09:00:02Z',
     updatedAt: '2023-07-14T09:00:02Z',
     orderId: 'b5f8e405-8b95-4cb2-8b3b-ee1573da4fc2',
-    productId: '1cc006a0-82a3-4e70-8d92-974d1ea9c3af',
+    productId: '1cc006a0-82a3-4e70-8d92-974d1ea9c3af'
   },
   {
     id: '6b344ab9-3a26-4daa-858f-2ed464a76904',
@@ -1084,7 +977,7 @@ export const ORDER_ITEMS = [
     createdAt: '2023-07-14T09:00:02Z',
     updatedAt: '2023-07-14T09:00:02Z',
     orderId: 'ae7597de-6601-4a9e-8047-9dd9f6e57e94',
-    productId: '85fc2182-8b7f-47f1-8f3d-911e0a3c0582',
+    productId: '85fc2182-8b7f-47f1-8f3d-911e0a3c0582'
   },
   {
     id: '9a918a82-8e1e-442f-96a5-05205199547f',
@@ -1093,7 +986,7 @@ export const ORDER_ITEMS = [
     createdAt: '2023-07-14T09:00:02Z',
     updatedAt: '2023-07-14T09:00:02Z',
     orderId: 'dedd2a7f-56c4-45b7-a37d-efdc1d2f518d',
-    productId: 'd9e3f6ae-04e5-4a7b-8c7c-2d582af08489',
+    productId: 'd9e3f6ae-04e5-4a7b-8c7c-2d582af08489'
   },
   {
     id: 'e593d45c-c244-4e53-92a6-33450a6d8f18',
@@ -1102,7 +995,7 @@ export const ORDER_ITEMS = [
     createdAt: '2023-07-14T09:00:03Z',
     updatedAt: '2023-07-14T09:00:03Z',
     orderId: '7c5dd97a-b86b-4b7f-9da7-d6d9258f8d66',
-    productId: '10f12b65-20f5-43d9-860e-faf4890e2a9e',
+    productId: '10f12b65-20f5-43d9-860e-faf4890e2a9e'
   },
   {
     id: '64637bcf-531e-4569-8d5d-80801363821e',
@@ -1111,6 +1004,20 @@ export const ORDER_ITEMS = [
     createdAt: '2023-07-14T09:00:03Z',
     updatedAt: '2023-07-14T09:00:03Z',
     orderId: 'f5c8e4be-c69f-4e74-b48a-1671cbeff9a2',
-    productId: '6922d7f9-72d6-46fe-8b0e-890700aa8f13',
-  },
+    productId: '6922d7f9-72d6-46fe-8b0e-890700aa8f13'
+  }
+];
+
+export const ARTICLES = [
+  {
+    id: 'f8013040-b076-4dc4-8677-11be9a17162f',
+    name: '랑방 샤워젤 세트',
+    description:
+      '랑방의 향기로운 샤워젤 세트입니다. 피부를 부드럽게 케어하며, 향기로운 샤워 시간을 선사합니다.',
+    category: 'BEAUTY',
+    price: 38000,
+    stock: 20,
+    createdAt: '2023-07-14T10:00:00Z',
+    updatedAt: '2023-07-14T10:00:00Z'
+  }
 ];

@@ -6,14 +6,12 @@ const prisma = new PrismaClient();
 const newProducts = [];
 for (let i = 0; i < PRODUCTS.length; i++) {
   let { id, name, description, category: tags, price } = PRODUCTS[i];
+  const tempTags = [[...tags].join('')];
+  tags = tempTags;
   newProducts.push({ id, name, description, tags, price });
 }
 
 async function main() {
-  // delete pre-existing data & insert mock data
-  //await prisma.article.deleteMany();
-  //await prisma.article.createMany({ data: ARTICLES, skipDuplicates: true });
-
   await prisma.product.deleteMany();
   await prisma.product.createMany({ data: newProducts, skipDuplicates: true });
 }

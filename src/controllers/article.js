@@ -1,0 +1,105 @@
+import express from 'express';
+import { PrismaClient } from '@prisma/client';
+import { assert } from 'superstruct';
+import cors from 'cors';
+import { CreateComment, CreateArticle, PatchArticle } from '../structs/structs.js';
+
+const app = express();
+app.use(express.json());
+app.use(cors());
+
+const prisma = new PrismaClient();
+
+export async function postArticle(req, res) {
+  const data = req.body;
+  assert(data, CreateArticle);
+  const article = await prisma.article.create({ data });
+  res.status(200).send(article);
+}
+
+export async function getArticleList(req, res) {
+  const { offset = 0, limit = 0, order = 'recent', title, content } = req.query;
+  let orderBy;
+  if (order !== 'recent') {
+    orderBy = { createdAt: 'asc' };
+  } else {
+    orderBy = { createdAt: 'desc' };
+  }
+
+  const articles = await prisma.article.findMany({
+    where: { title: { contains: title }, content: { contains: content } },
+    orderBy,
+    skip: parseInt(offset),
+    take: parseInt(limit) || undefined,
+    select: {
+      id: true,
+      title: true,
+      content: true,
+      createdAt: true
+    }
+  });
+  res.status(200).send(articles);
+}
+
+export async function getArticle(req, res) {
+  const { id } = req.params;
+  const article = await prisma.article.findFirstOrThrow({
+    where: { id },
+    select: {
+      id: true,
+      title: true,
+      content: true,
+      createdAt: true
+    }
+  });
+  res.send(article);
+}
+
+export async function patchArticle(req, res) {
+  const { id } = req.params;
+  const data = req.body;
+  assert(data, PatchArticle);
+  const article = await prisma.article.update({ where: { id }, data });
+  res.status(201).send(article);
+}
+
+export async function deleteArticle(req, res) {
+  const id = req.params.id;
+  const article = await prisma.article.delete({ where: { id } });
+  res.status(201).send('Article deleted.');
+}
+
+export async function postComment(req, res) {
+  const { id: articleId } = req.params;
+  const { content } = req.body;
+  assert({ articleId, content }, CreateComment);
+  const contentArray = Array.isArray(content) ? content : [content];
+
+  const article = await prisma.article.update({
+    where: { id: articleId },
+    data: {
+      comments: {
+        create: contentArray.map((c) => ({ content: c }))
+      }
+    },
+    include: { comments: true }
+  });
+  res.status(200).send(article);
+}
+
+export async function getCommentList(req, res) {
+  const { id: articleId } = req.params;
+  const article = await prisma.article.findUniqueOrThrow({
+    where: { id: articleId },
+    select: { comments: true }
+  });
+  res.status(200).send(article);
+}
+
+export async function deleteCommentList(req, res) {
+  const { id: articleId } = req.params;
+  const comments = await prisma.comment.deleteMany({
+    where: { articleId }
+  });
+  res.status(201).send('Comments deleted.');
+}
