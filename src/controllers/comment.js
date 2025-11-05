@@ -2,76 +2,100 @@ import express from 'express';
 import { PrismaClient } from '@prisma/client';
 import { assert } from 'superstruct';
 import cors from 'cors';
-import { CreateProductComment } from '../structs/structs.js';
-import { asyncHandler } from '../middlewares/errhandler.js';
+import { CreateComment, PatchComment } from '../structs/structs.js';
 
 const app = express();
 app.use(express.json());
 app.use(cors());
 
-const commentRouter = express.Router();
 const prisma = new PrismaClient();
 
-productCommentRouter.route('/:productId/comments').post(
-  asyncHandler(async (req, res) => {
-    const { productId } = req.params;
-    const { content } = req.body
-    const data = { content, productId }
-    assert(data, CreateComment);
+export async function postArticleComment(req, res) {
+  const { id: articleId } = req.params;
+  const { content } = req.body;
+  assert({ articleId, content }, CreateComment);
+  const contentArray = Array.isArray(content) ? content : [content];
 
-    const comment = await prisma.comment.create({ data});
-    res.status(201).send(comment);
-  })
-);
-
-productCommentRouter
-  .route('/:productId/comments/:commentId')
-  .patch(
-    asyncHandler(async (req, res) => {
-      const { productId, commentId } = req.params;
-      const { content } = req.body;
-      const comment = await prisma.comment.update({
-        where: { id: commentId },
-        data: { content, productId }
-      });
-      res.status(201).send(comment);
-    })
-  );
-  .delete(
-    asyncHandler(async (req, res) => {
-      const { id } = req.params;
-      const comment = await prisma.comment.delete({ where: { id } });
-      res.status(201).send('Comment deleted.');
-    })
-  )
-  .get(async (req, res) => {
-    const { id: productId } = req.params;
-    const replies = await prisma.product.findUniqueOrThrow({
-      where: { id: productId },
-      select: { productReplies: true }
-    });
-    res.status(200).send(replies);
-  })
-  .get(async (req, res) => {
-    // 댓글목록 조회
-    const replies = await prisma.reply.findMany({
-      select: { productReplies: true }
-    });
-    res.status(200).send(replies);
+  const article = await prisma.article.update({
+    where: { id: articleId },
+    data: {
+      comments: {
+        create: contentArray.map((c) => ({ content: c }))
+      }
+    },
+    include: { comments: true }
   });
+  res.status(200).send(article);
+}
 
-const articleCommentRouter = express.Router();
+export async function postProductComment(req, res) {
+  const { id: productId } = req.params;
+  const { content } = req.body;
+  assert({ productId, content }, CreateComment);
+  const contentArray = Array.isArray(content) ? content : [content];
 
-articleCommentRouter.route('/:articleId/comments').post(
-  asyncHandler(async (req, res) => {
-    const { articleId } = req.params;
-    const { content } = req.body
-    const data = { content, articleId }
-    assert(data, CreateComment);
+  const product = await prisma.product.update({
+    where: { id: productId },
+    data: {
+      comments: {
+        create: contentArray.map((c) => ({ content: c }))
+      }
+    },
+    include: { comments: true }
+  });
+  res.status(200).send(product);
+}
 
-    const comment = await prisma.comment.create({ data});
-    res.status(201).send(comment);
-  })
-);
+export async function patchComment(req, res) {
+  const { id } = req.params;
+  assert(req.body, PatchComment);
+  const comment = await prisma.comment.update({
+    where: { id },
+    data: req.body
+  });
+  res.status(201).send(comment);
+}
 
-export default productCommentRouter;
+export async function deleteComment(req, res) {
+  const { id } = req.params;
+  const comment = await prisma.comment.delete({ where: { id } });
+  res.status(201).send('Comment deleted.');
+}
+
+export async function getComment(req, res) {
+  const { id } = req.params;
+  const comment = await prisma.comment.findUniqueOrThrow({
+    where: { id }
+  });
+  res.status(200).send(comment);
+}
+
+export async function getCommentList(req, res) {
+  const { offset = 0, limit = 0, order = 'recent', productId, articleId, content } = req.query;
+  let orderBy;
+  if (order !== 'recent') {
+    orderBy = { createdAt: 'asc' };
+  } else {
+    orderBy = { createdAt: 'desc' };
+  }
+
+  let comments;
+
+  if (productId) {
+    comments = await prisma.comment.findMany({
+      where: { id: productId },
+      orderBy
+    });
+  } else if (articleId) {
+    comments = await prisma.comment.findMany({
+      where: { id: articleId },
+      orderBy
+    });
+  } else {
+    comments = await prisma.comment.findMany({
+      where: { content: { contains: content } },
+      orderBy
+    });
+  }
+  res.status(200).send(comments);
+}
