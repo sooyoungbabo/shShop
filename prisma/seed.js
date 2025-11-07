@@ -1,19 +1,16 @@
 import { PrismaClient } from '@prisma/client';
-import { PRODUCTS } from './mock.js';
+import { PRODUCTS, ARTICLES, COMMENTS } from './mock.js';
 
 const prisma = new PrismaClient();
 
-const newProducts = [];
-for (let i = 0; i < PRODUCTS.length; i++) {
-  let { id, name, description, category: tags, price } = PRODUCTS[i];
-  const tempTags = [[...tags].join('')];
-  tags = tempTags;
-  newProducts.push({ id, name, description, tags, price });
-}
-
 async function main() {
+  await prisma.comment.deleteMany();
   await prisma.product.deleteMany();
-  await prisma.product.createMany({ data: newProducts, skipDuplicates: true });
+  await prisma.article.deleteMany();
+
+  await prisma.product.createMany({ data: PRODUCTS, skipDuplicates: true });
+  await prisma.article.createMany({ data: ARTICLES, skipDuplicates: true });
+  await prisma.comment.createMany({ data: COMMENTS, skipDuplicates: true });
 }
 
 main()

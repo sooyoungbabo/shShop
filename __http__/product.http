@@ -1,6 +1,6 @@
-GET http://localhost:3000/products
+GET http://localhost:3000/products?order=recent
 ###
-GET http://localhost:3000/products?offset=0
+GET http://localhost:3000/products?offset=2
 
 ###
 GET http://localhost:3000/products?name=프로
@@ -8,7 +8,7 @@ GET http://localhost:3000/products?name=프로
 GET http://localhost:3000/products?description=보습
 
 ###
-GET http://localhost:3000/products/e48d9e8b-6712-48ed-9ea2-2f7e150a2e48
+GET http://localhost:3000/products/d48cb489-11f5-4796-8b5c-dc0204e7e09e
 
 ###
 POST http://localhost:3000/products
@@ -22,7 +22,7 @@ Content-Type: application/json
 }
 
 ###
-PATCH http://localhost:3000/products/157261cb-4bea-40c9-8637-1eea909cc0d5
+PATCH http://localhost:3000/products/d48cb489-11f5-4796-8b5c-dc0204e7e09e
 Content-Type: application/json
 
 {
@@ -32,20 +32,22 @@ Content-Type: application/json
 }
 
 ###
-DELETE http://localhost:3000/products/ab919f50-f4e5-415f-98cd-adf1a146e3ce
-
+DELETE http://localhost:3000/products/d48cb489-11f5-4796-8b5c-dc0204e7e09e
 
 //---------------------comments 관련
 ###
-POST http://localhost:3000/products/157261cb-4bea-40c9-8637-1eea909cc0d5/comments
+POST http://localhost:3000/products/6c292255-7344-4715-a3e8-7f801f5a1ae5/comments
 Content-Type: application/json
 
 {
-  "content": "아이폰은 늘 만족스럽다."
+  "content": "아이폰은 진리."
 }
 
 ###
-GET http://localhost:3000/products/157261cb-4bea-40c9-8637-1eea909cc0d5/comments
+GET http://localhost:3000/products/6c292255-7344-4715-a3e8-7f801f5a1ae5/comments
 
 ###
-DELETE http://localhost:3000/products/157261cb-4bea-40c9-8637-1eea909cc0d5/comments
+DELETE http://localhost:3000/products/d48cb489-11f5-4796-8b5c-dc0204e7e09e/comments
+
+###
+DELETE http://localhost:3000/products/6c292255-7344-4715-a3e8-7f801f5a1ae5/comments/69c065c5-6a68-44c4-bdba-4c21ebd5a876

@@ -13,7 +13,10 @@ const prisma = new PrismaClient();
 export async function postProduct(req, res) {
   const data = req.body;
   //assert(data, CreateProduct);
-  const product = await prisma.product.create({ data });
+  const product = await prisma.product.create({
+    data,
+    include: { comments: true }
+  });
   console.log('Product created.');
   res.status(200).send(product);
 }
@@ -26,12 +29,11 @@ export async function getProductList(req, res) {
   } else {
     orderBy = { createdAt: 'desc' };
   }
-
   const products = await prisma.product.findMany({
     where: { name: { contains: name }, description: { contains: description } },
     orderBy,
     skip: parseInt(offset),
-    take: parseInt(limit) || 10,
+    take: parseInt(limit) || undefined,
     select: {
       id: true,
       name: true,
@@ -48,11 +50,11 @@ export async function getProduct(req, res) {
   const product = await prisma.product.findFirstOrThrow({
     where: { id },
     include: {
-      comments: true,
+      imageUrls: false,
       updatedAt: false
     }
   });
-  product.comments = product.comments.map(({ articleId, updatedAt, ...rest }) => rest);
+  //product.comments = product.comments.map(({ articleId, updatedAt, ...rest }) => rest);
   console.log('Product found.');
   res.status(200).send(product);
 }
@@ -61,7 +63,11 @@ export async function patchProduct(req, res) {
   const { productId: id } = req.params;
   const data = req.body;
   //assert(data, PatchProduct);
-  const product = await prisma.product.update({ where: { id }, data });
+  const product = await prisma.product.update({
+    where: { id },
+    data,
+    include: { comments: true }
+  });
   console.log('Product patched.');
   res.status(201).send(product);
 }
@@ -70,11 +76,11 @@ export async function deleteProduct(req, res) {
   const { productId: id } = req.params;
   const product = await prisma.product.delete({ where: { id } });
   console.log('Product deleted.');
-  res.status(201).send(product);
+  res.status(201).send('Product deleted.');
 }
 
 //---------------------------------------------- comment 여기부터
-export async function postComment(req, res) {
+export async function postProductComment(req, res) {
   const { productId } = req.params;
   const { content } = req.body;
   assert({ productId, content }, CreateComment);
@@ -89,21 +95,23 @@ export async function postComment(req, res) {
     },
     include: { comments: true }
   });
+  product.comments = product.comments.map(({ articleId, ...rest }) => rest);
   console.log('Comments created.');
   res.status(200).send(product);
 }
 
-export async function getCommentList(req, res) {
+export async function getProductCommentList(req, res) {
   const { productId } = req.params;
   const product = await prisma.product.findUniqueOrThrow({
     where: { id: productId },
     select: { comments: true }
   });
+  product.comments = product.comments.map(({ articleId, ...rest }) => rest);
   console.log('Comment list retrieved.');
   res.status(200).send(product);
 }
 
-export async function deleteCommentList(req, res) {
+export async function deleteProductCommentList(req, res) {
   const { productId } = req.params;
   const product = await prisma.product.update({
     where: { id: productId },
@@ -111,5 +119,16 @@ export async function deleteCommentList(req, res) {
     include: { comments: true }
   });
   console.log('Comments deleted.');
+  res.status(201).send(product);
+}
+
+export async function deleteProductComment(req, res) {
+  const { productId, commentId } = req.params;
+  const product = await prisma.product.update({
+    where: { id: productId },
+    data: { comments: { deleteMany: { id: commentId } } },
+    include: { comments: true }
+  });
+  console.log('1 comment deleted.');
   res.status(201).send(product);
 }

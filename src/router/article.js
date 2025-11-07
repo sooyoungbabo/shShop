@@ -8,9 +8,10 @@ import {
   getArticleList,
   patchArticle,
   postArticle,
-  postComment,
-  getCommentList,
-  deleteCommentList
+  deleteArticleComment,
+  deleteArticleCommentList,
+  getArticleCommentList,
+  postArticleComment
 } from '../controller/article.js';
 
 const articleRouter = express.Router();
@@ -20,8 +21,9 @@ articleRouter.get('/', errHandler(getArticleList));
 articleRouter.patch('/:articleId', validate(PatchArticle), errHandler(patchArticle));
 articleRouter.delete('/:articleId', errHandler(deleteArticle));
 articleRouter.get('/:articleId', errHandler(getArticle));
-articleRouter.post('/:articleId/comments', errHandler(postComment));
-articleRouter.get('/:articleId/comments', errHandler(getCommentList));
-articleRouter.delete('/:articleId/comments', errHandler(deleteCommentList));
+articleRouter.post('/:articleId/comments', errHandler(postArticleComment));
+articleRouter.get('/:articleId/comments', errHandler(getArticleCommentList));
+articleRouter.delete('/:articleId/comments', errHandler(deleteArticleCommentList));
+articleRouter.delete('/:articleId/comments/:commentId', errHandler(deleteArticleComment));
 
 export default articleRouter;

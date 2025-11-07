@@ -8,9 +8,10 @@ import {
   deleteProduct,
   getProduct,
   getProductList,
-  postComment,
-  getCommentList,
-  deleteCommentList
+  deleteProductComment,
+  deleteProductCommentList,
+  getProductCommentList,
+  postProductComment
 } from '../controller/product.js';
 
 const productRouter = express.Router();
@@ -20,8 +21,9 @@ productRouter.get('/', errHandler(getProductList));
 productRouter.patch('/:productId', validate(PatchProduct), errHandler(patchProduct));
 productRouter.delete('/:productId', errHandler(deleteProduct));
 productRouter.get('/:productId', errHandler(getProduct));
-productRouter.post('/:productId/comments', errHandler(postComment));
-productRouter.get('/:productId/comments', errHandler(getCommentList));
-productRouter.delete('/:productId/comments', errHandler(deleteCommentList));
+productRouter.post('/:productId/comments', errHandler(postProductComment));
+productRouter.get('/:productId/comments', errHandler(getProductCommentList));
+productRouter.delete('/:productId/comments', errHandler(deleteProductCommentList));
+productRouter.delete('/:productId/comments/:commentId', errHandler(deleteProductComment));
 
 export default productRouter;

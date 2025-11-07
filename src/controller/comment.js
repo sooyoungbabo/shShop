@@ -25,6 +25,7 @@ export async function postArticleComment(req, res) {
     },
     include: { comments: true, updatedAt: false }
   });
+  article.comments = article.comments.map(({ updatedAt, productId, ...rest }) => rest);
   console.log('Comments updated for article.');
   res.status(200).send(article);
 }
@@ -44,6 +45,7 @@ export async function postProductComment(req, res) {
     },
     include: { comments: true, updatedAt: false }
   });
+  product.comments = product.comments.map(({ articleId, ...rest }) => rest);
   console.log('Comments updated for product.');
   res.status(200).send(product);
 }
@@ -62,8 +64,8 @@ export async function patchComment(req, res) {
 export async function deleteComment(req, res) {
   const { commentId: id } = req.params;
   const comment = await prisma.comment.delete({ where: { id } });
-  console.log('Comments deleted.');
-  res.status(201).send(comment);
+  console.log('Comment deleted.');
+  res.status(201).send('Comment deleted.');
 }
 
 export async function getComment(req, res) {

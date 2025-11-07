@@ -1,7 +1,7 @@
 GET http://localhost:3000/articles
 
 ###
-GET http://localhost:3000/articles?title=나인
+GET http://localhost:3000/articles?title=비니
 
 ###
 GET http://localhost:3000/articles/5002a911-3cae-423e-88c6-008f394b81c9
@@ -15,11 +15,11 @@ Content-Type: application/json
 }
 
 ###
-PATCH http://localhost:3000/articles/8f62cde2-e3c7-4e79-9167-baf41c9c5994
+PATCH http://localhost:3000/articles/42183d12-5a9c-49f1-bea3-861da70d5847
 Content-Type: application/json
 
 {
-  "content": "남주 조 펫지와 여주 마리사 토메이의 궁합이 정말 잘 맞는 영화~"
+  "content": "뉴욕 브루클린 출신의 7전8기 변호사 비니의 좌충우돌 첫 케이스! 비니는 사촌 빈센트의 살인누명을 벗겨줄 수 있을 것인가?"
 }
 
 ###
@@ -31,7 +31,7 @@ POST http://localhost:3000/articles/42183d12-5a9c-49f1-bea3-861da70d5847/comment
 Content-Type: application/json
 
 {
-  "content": "랄프 마치오도 굿"
+  "content": "무지 웃김"
 }
 
 ###
@@ -39,3 +39,7 @@ GET http://localhost:3000/articles/42183d12-5a9c-49f1-bea3-861da70d5847/comments
 
 ###
 DELETE http://localhost:3000/articles/42183d12-5a9c-49f1-bea3-861da70d5847/comments
+
+
+###
+DELETE http://localhost:3000/articles/42183d12-5a9c-49f1-bea3-861da70d5847/comments/8aef5e4f-1512-4f44-989c-e1f405e7786e

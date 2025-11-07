@@ -1,5 +1,5 @@
 //------------------------product image
-GET http://localhost:3000/images/products/7f70481b-784d-4b0e-bc3e-f05eefc17951
+GET http://localhost:3000/images/products/6c292255-7344-4715-a3e8-7f801f5a1ae5
 //네스프레소    e48d9e8b-6712-48ed-9ea2-2f7e150a2e48
 //아이폰17pro   f42bb363-e103-41db-9ced-af0cdbb5b532
 //애플 airpod   7f70481b-784d-4b0e-bc3e-f05eefc17951
