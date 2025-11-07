@@ -1,33 +1,33 @@
-GET http://localhost:3001/comments
+GET http://localhost:3000/comments
 
 
 ###
-GET http://localhost:3001/comments/482decd2-2f7d-4e4f-accd-28893e286f92
+GET http://localhost:3000/comments/482decd2-2f7d-4e4f-accd-28893e286f92
 
 ###
-POST http://localhost:3001/comments/articles/5002a911-3cae-423e-88c6-008f394b81c9
+POST http://localhost:3000/comments/articles/5002a911-3cae-423e-88c6-008f394b81c9
 Content-Type: application/json
 
 {
-  "content": "이탈리아 피렌체가 배경인가 그래요. 아름답지요"
+  "content": "너른 억새밭의 첫키스 씬~"
 }
 
 ###
-POST http://localhost:3001/comments/products/e48d9e8b-6712-48ed-9ea2-2f7e150a2e48
+POST http://localhost:3000/comments/products/e48d9e8b-6712-48ed-9ea2-2f7e150a2e48
 Content-Type: application/json
 
 {
-  "content": "다양한 풍미의 캡슐이 있어요!"
+  "content": "가성비 좋고 다양한 풍미의 캡슐커피!!"
 }
 
 ###
-PATCH http://localhost:3001/comments/745277ae-e0eb-42fc-af10-d5961c8d46f4
+PATCH http://localhost:3000/comments/2849b7ab-f2f6-42c4-8b72-c07474a19c6e
 Content-Type: application/json
 
 {
-  "content": "가성비 좋고 다양한 풍미의 캡슐커피!"
+  "content": "가성비 좋은 편!"
 }
 
 ###
-DELETE http://localhost:3001/comments/555786e1-441b-4d07-a317-4bfe00d10d3d
+DELETE http://localhost:3000/comments/aaaeb97b-4cf1-4b33-b31f-59217947f66c
 

@@ -5,7 +5,8 @@ export const CreateProduct = s.object({
   name: s.string(),
   description: s.string(),
   price: s.min(s.number(), 0),
-  tags: s.array(s.string())
+  tags: s.array(s.string()),
+  imageUrls: s.optional(s.array())
 });
 
 export const PatchProduct = s.partial(CreateProduct);
@@ -30,10 +31,3 @@ export const CreateComment = s.object({
 //   return hasContent && hasProduct !== hasArticle;
 // });
 export const PatchComment = s.partial(CreateComment);
-
-export const CreateImage = s.object({
-  url: s.string(),
-  productId: s.define('Uuid', (value) => isUuid.v4(value))
-});
-
-export const PatchImage = s.partial(CreateImage);

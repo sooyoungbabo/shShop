@@ -1,13 +1,17 @@
-GET http://localhost:3001/products
+GET http://localhost:3000/products
+###
+GET http://localhost:3000/products?offset=0
 
 ###
-GET http://localhost:3001/products?description=프로
+GET http://localhost:3000/products?name=프로
+###
+GET http://localhost:3000/products?description=보습
 
 ###
-GET http://localhost:3001/products/7f70481b-784d-4b0e-bc3e-f05eefc17951
+GET http://localhost:3000/products/e48d9e8b-6712-48ed-9ea2-2f7e150a2e48
 
 ###
-POST http://localhost:3001/products
+POST http://localhost:3000/products
 Content-Type: application/json
 
 {
@@ -18,28 +22,30 @@ Content-Type: application/json
 }
 
 ###
-PATCH http://localhost:3001/products/a75b3c7e-fff0-4143-b010-1bf131935c9b
+PATCH http://localhost:3000/products/157261cb-4bea-40c9-8637-1eea909cc0d5
 Content-Type: application/json
 
 {
-  "description": "최신 아이폰, 8배 광학줌",
+  "description": "2025년 10월 한국에 발매 시작한 최신 아이폰으로 8배 광학줌을 가진 후면 카메라가 압권입니다.",
   "price": 1790000,
   "tags": ["전자제품", "스마트폰", "경량 케이스"]
 }
 
 ###
-DELETE http://localhost:3001/products/a75b3c7e-fff0-4143-b010-1bf131935c9b
+DELETE http://localhost:3000/products/ab919f50-f4e5-415f-98cd-adf1a146e3ce
 
+
+//---------------------comments 관련
 ###
-POST http://localhost:3001/products/7f70481b-784d-4b0e-bc3e-f05eefc17951/comments
+POST http://localhost:3000/products/157261cb-4bea-40c9-8637-1eea909cc0d5/comments
 Content-Type: application/json
 
 {
-  "content": "나의 스터디 파트너!"
+  "content": "아이폰은 늘 만족스럽다."
 }
 
 ###
-GET http://localhost:3001/products/7f70481b-784d-4b0e-bc3e-f05eefc17951/comments
+GET http://localhost:3000/products/157261cb-4bea-40c9-8637-1eea909cc0d5/comments
 
 ###
-DELETE http://localhost:3001/products/7f70481b-784d-4b0e-bc3e-f05eefc17951/comments
+DELETE http://localhost:3000/products/157261cb-4bea-40c9-8637-1eea909cc0d5/comments

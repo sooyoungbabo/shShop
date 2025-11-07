@@ -2,7 +2,7 @@ import express from 'express';
 import { PrismaClient } from '@prisma/client';
 import { assert } from 'superstruct';
 import cors from 'cors';
-import { CreateComment, CreateProduct, PatchProduct } from '../structs/structs.js';
+import { CreateComment } from '../struct/structs.js';
 
 const app = express();
 app.use(express.json());
@@ -12,8 +12,9 @@ const prisma = new PrismaClient();
 
 export async function postProduct(req, res) {
   const data = req.body;
-  assert(data, CreateProduct);
+  //assert(data, CreateProduct);
   const product = await prisma.product.create({ data });
+  console.log('Product created.');
   res.status(200).send(product);
 }
 
@@ -30,7 +31,7 @@ export async function getProductList(req, res) {
     where: { name: { contains: name }, description: { contains: description } },
     orderBy,
     skip: parseInt(offset),
-    take: parseInt(limit) || undefined,
+    take: parseInt(limit) || 10,
     select: {
       id: true,
       name: true,
@@ -38,45 +39,43 @@ export async function getProductList(req, res) {
       createdAt: true
     }
   });
-  res.send(products);
+  console.log('Product list retrieved.');
+  res.status(200).send(products);
 }
 
 export async function getProduct(req, res) {
-  const { id } = req.params;
+  const { productId: id } = req.params;
   const product = await prisma.product.findFirstOrThrow({
     where: { id },
-    // omit: {
-    //   images: true,
-    //   updatedAt: true
-    // }
-    select: {
-      id: true,
-      name: true,
-      description: true,
-      price: true,
-      tags: true,
-      createdAt: true
+    include: {
+      comments: true,
+      updatedAt: false
     }
   });
-  res.send(product);
+  product.comments = product.comments.map(({ articleId, updatedAt, ...rest }) => rest);
+  console.log('Product found.');
+  res.status(200).send(product);
 }
 
 export async function patchProduct(req, res) {
-  const { id } = req.params;
+  const { productId: id } = req.params;
   const data = req.body;
-  assert(data, PatchProduct);
+  //assert(data, PatchProduct);
   const product = await prisma.product.update({ where: { id }, data });
+  console.log('Product patched.');
   res.status(201).send(product);
 }
 
 export async function deleteProduct(req, res) {
-  const id = req.params.id;
+  const { productId: id } = req.params;
   const product = await prisma.product.delete({ where: { id } });
-  res.status(201).send('Product deleted.');
+  console.log('Product deleted.');
+  res.status(201).send(product);
 }
 
+//---------------------------------------------- comment 여기부터
 export async function postComment(req, res) {
-  const { id: productId } = req.params;
+  const { productId } = req.params;
   const { content } = req.body;
   assert({ productId, content }, CreateComment);
   const contentArray = Array.isArray(content) ? content : [content];
@@ -90,22 +89,27 @@ export async function postComment(req, res) {
     },
     include: { comments: true }
   });
+  console.log('Comments created.');
   res.status(200).send(product);
 }
 
 export async function getCommentList(req, res) {
-  const { id: productId } = req.params;
+  const { productId } = req.params;
   const product = await prisma.product.findUniqueOrThrow({
     where: { id: productId },
     select: { comments: true }
   });
+  console.log('Comment list retrieved.');
   res.status(200).send(product);
 }
 
 export async function deleteCommentList(req, res) {
-  const { id: productId } = req.params;
-  const comments = await prisma.comment.deleteMany({
-    where: { productId }
+  const { productId } = req.params;
+  const product = await prisma.product.update({
+    where: { id: productId },
+    data: { comments: { deleteMany: {} } },
+    include: { comments: true }
   });
-  res.status(201).send('Comments deleted.');
+  console.log('Comments deleted.');
+  res.status(201).send(product);
 }

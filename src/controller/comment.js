@@ -2,7 +2,7 @@ import express from 'express';
 import { PrismaClient } from '@prisma/client';
 import { assert } from 'superstruct';
 import cors from 'cors';
-import { CreateComment, PatchComment } from '../structs/structs.js';
+import { CreateComment, PatchComment } from '../struct/structs.js';
 
 const app = express();
 app.use(express.json());
@@ -11,7 +11,7 @@ app.use(cors());
 const prisma = new PrismaClient();
 
 export async function postArticleComment(req, res) {
-  const { id: articleId } = req.params;
+  const { articleId } = req.params;
   const { content } = req.body;
   assert({ articleId, content }, CreateComment);
   const contentArray = Array.isArray(content) ? content : [content];
@@ -23,13 +23,14 @@ export async function postArticleComment(req, res) {
         create: contentArray.map((c) => ({ content: c }))
       }
     },
-    include: { comments: true }
+    include: { comments: true, updatedAt: false }
   });
+  console.log('Comments updated for article.');
   res.status(200).send(article);
 }
 
 export async function postProductComment(req, res) {
-  const { id: productId } = req.params;
+  const { productId } = req.params;
   const { content } = req.body;
   assert({ productId, content }, CreateComment);
   const contentArray = Array.isArray(content) ? content : [content];
@@ -41,32 +42,36 @@ export async function postProductComment(req, res) {
         create: contentArray.map((c) => ({ content: c }))
       }
     },
-    include: { comments: true }
+    include: { comments: true, updatedAt: false }
   });
+  console.log('Comments updated for product.');
   res.status(200).send(product);
 }
 
 export async function patchComment(req, res) {
-  const { id } = req.params;
+  const { commentId: id } = req.params;
   assert(req.body, PatchComment);
   const comment = await prisma.comment.update({
     where: { id },
     data: req.body
   });
+  console.log('Comments edited.');
   res.status(201).send(comment);
 }
 
 export async function deleteComment(req, res) {
-  const { id } = req.params;
+  const { commentId: id } = req.params;
   const comment = await prisma.comment.delete({ where: { id } });
-  res.status(201).send('Comment deleted.');
+  console.log('Comments deleted.');
+  res.status(201).send(comment);
 }
 
 export async function getComment(req, res) {
-  const { id } = req.params;
+  const { commentId: id } = req.params;
   const comment = await prisma.comment.findUniqueOrThrow({
     where: { id }
   });
+  console.log('Comments retrieved.');
   res.status(200).send(comment);
 }
 
@@ -97,5 +102,6 @@ export async function getCommentList(req, res) {
       orderBy
     });
   }
+  console.log('Comment list retrieved.');
   res.status(200).send(comments);
 }
