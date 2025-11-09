@@ -1,0 +1,54 @@
+// 특정 상품 댓글 등록
+###
+POST http://localhost:3000/comments/products/ac432f1d-3a8f-4acb-9038-2b311ae2c521
+Content-Type: application/json
+
+{
+  "content": "아이폰은 진리."
+}
+
+// 특정 게시물 댓글 등록
+###
+POST http://localhost:3000/comments/articles/4c2b5e3f-8af1-4c44-84b7-1cb4e2b9272c
+Content-Type: application/json
+
+{
+  "content": "예상치 못한 결말이었어요."
+}
+
+
+// 댓글 목록 조회: cursor 기반
+// 첫 조회: offset=0, cursor=undefined
+###
+GET http://localhost:3000/comments 
+###
+GET http://localhost:3000/comments?limit=3&cursor=1771b493-448f-4b3d-9de3-c2b1a28d07b1
+###
+// 댓글 목록 조회: content로 filtering
+GET http://localhost:3000/comments?content=충격
+
+// 중고마켓 상품 전체에 대한 댓글 목록 조회, cursor 기반
+###
+GET http://localhost:3000/comments/products?cursor=b4c5d6e7-f809-05bc-b9ab-6c7d8e9f0a1b
+
+// 자유게시판 모든 게시물에 대한 댓글 목록 조회, cursor 기반
+###
+GET http://localhost:3000/comments/articles?cursor=5e2cc0ce-bebc-4a39-9d73-c6e65bdb7e62
+
+// 댓글 1개 조회
+###
+GET http://localhost:3000/comments/b5c8d6f3-91b3-4b52-a46e-56b5b23d04d8
+
+// 댓글 1개 수정
+###
+PATCH http://localhost:3000/comments/8319b625-8515-42cf-beac-f546c6aa298c
+Content-Type: application/json
+
+{
+  "content": "너무 비싸요"
+}
+
+// 댓글 1개 삭제
+###
+DELETE http://localhost:3000/comments/8319b625-8515-42cf-beac-f546c6aa298c
+

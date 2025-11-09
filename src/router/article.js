@@ -1,29 +1,21 @@
 import express from 'express';
-import errHandler from '../middleware/errhandler.js';
+import modelValidate from '../middleware/modelValidate.js';
 import { CreateArticle, PatchArticle } from '../struct/structs.js';
-import validate from '../middleware/validate.js';
 import {
-  deleteArticle,
-  getArticle,
-  getArticleList,
-  patchArticle,
-  postArticle,
-  deleteArticleComment,
-  deleteArticleCommentList,
-  getArticleCommentList,
-  postArticleComment
+  postArticle, // 게시물 등록
+  getArticleList, // 게시물 목록 조회
+  getArticle, // 게시물 상세 조회
+  patchArticle, // 게시물 수정
+  deleteArticle // 게시물 삭제
 } from '../controller/article.js';
 
 const articleRouter = express.Router();
 
-articleRouter.post('/', validate(CreateArticle), errHandler(postArticle));
-articleRouter.get('/', errHandler(getArticleList));
-articleRouter.patch('/:articleId', validate(PatchArticle), errHandler(patchArticle));
-articleRouter.delete('/:articleId', errHandler(deleteArticle));
-articleRouter.get('/:articleId', errHandler(getArticle));
-articleRouter.post('/:articleId/comments', errHandler(postArticleComment));
-articleRouter.get('/:articleId/comments', errHandler(getArticleCommentList));
-articleRouter.delete('/:articleId/comments', errHandler(deleteArticleCommentList));
-articleRouter.delete('/:articleId/comments/:commentId', errHandler(deleteArticleComment));
+articleRouter.get('/:articleId', getArticle);
+articleRouter.post('/', modelValidate(CreateArticle), postArticle);
+articleRouter.get('/', getArticleList);
+articleRouter.get('/:articleId', getArticle);
+articleRouter.patch('/:articleId', modelValidate(PatchArticle), patchArticle);
+articleRouter.delete('/:articleId', deleteArticle);
 
 export default articleRouter;

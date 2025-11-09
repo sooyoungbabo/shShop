@@ -3,6 +3,7 @@ import { PrismaClient } from '@prisma/client';
 import { assert } from 'superstruct';
 import cors from 'cors';
 import { CreateComment } from '../struct/structs.js';
+import { nextDay } from 'date-fns';
 
 const app = express();
 app.use(express.json());
@@ -10,15 +11,23 @@ app.use(cors());
 
 const prisma = new PrismaClient();
 
-export async function postArticle(req, res) {
+// 게시물 등록
+export async function postArticle(req, res, next) {
   const data = req.body;
-  //assert(data, CreateArticle);
-  const article = await prisma.article.create({ data });
-  res.status(200).send(article);
+  try {
+    const article = await prisma.article.create({ data });
+    res.status(201).send(article);
+  } catch (err) {
+    next(err);
+  }
 }
 
-export async function getArticleList(req, res) {
-  const { offset = 0, limit = 0, order = 'recent', title, content } = req.query;
+// 게시물 목록 조회
+// 페이지네이션: offset 기반
+// 퀘리 순서: order로 createdAt 오름/내림 순서 조회
+// 퀘리 조건: title이나 content에 포함된 문자로 검색 조회
+export async function getArticleList(req, res, next) {
+  const { offset, limit, order, title, content } = req.query;
   let orderBy;
   if (order !== 'recent') {
     orderBy = { createdAt: 'asc' };
@@ -26,98 +35,70 @@ export async function getArticleList(req, res) {
     orderBy = { createdAt: 'desc' };
   }
 
-  const articles = await prisma.article.findMany({
-    where: { title: { contains: title }, content: { contains: content } },
-    orderBy,
-    skip: parseInt(offset),
-    take: parseInt(limit) || undefined,
-    select: {
-      id: true,
-      title: true,
-      content: true,
-      createdAt: true
-    }
-  });
-  console.log('Article list found.');
-  res.status(200).send(articles);
+  try {
+    const articles = await prisma.article.findMany({
+      skip: parseInt(offset) || 0, // 페이지네이션: offset 기반, 디폴트 0
+      take: parseInt(limit) || 10, // 페이지 크기 디폴트 10
+      orderBy, // 퀘리 순서: createdAt 오름(order=asc) 또는 내림(order=recent) 순서 조회
+
+      // 퀘리 조건: title이나 content에 포함된 문자로 검색 조회
+      where: { title: { contains: title }, content: { contains: content } },
+      // 조회 필드 제한
+      select: {
+        id: true,
+        title: true,
+        content: true,
+        createdAt: true
+      }
+    });
+    console.log('Article list found.');
+    res.status(200).send(articles); // 상태코드 및 적절한 응답 리턴
+  } catch (err) {
+    next(err);
+  }
 }
 
-export async function getArticle(req, res) {
+// 게시물 상세 조회
+export async function getArticle(req, res, next) {
   const { articleId } = req.params;
-  const article = await prisma.article.findFirstOrThrow({
-    where: { id: articleId },
-    include: { comments: true, updatedAt: false }
-  });
-  article.comments = article.comments.map(({ productId, updatedAt, ...rest }) => rest);
-  console.log('Article found.');
-  res.send(article);
+  try {
+    const article = await prisma.article.findUniqueOrThrow({
+      where: { id: articleId },
+      include: { comments: false, updatedAt: false } // 댓글도 보고 싶지 않을까?
+    });
+
+    if (article.hasOwnProperty('comments')) {
+      // comments 조회한다면, updatedAt 필드 삭제
+      article.comments = article.comments.map(({ productId, updatedAt, ...rest }) => rest);
+    }
+    console.log('Article found.');
+    res.status(200).send(article);
+  } catch (err) {
+    next(err);
+  }
 }
 
-export async function patchArticle(req, res) {
+// 게시물 수정
+export async function patchArticle(req, res, next) {
   const { articleId } = req.params;
   const data = req.body;
-  //assert(data, PatchArticle);
-  const article = await prisma.article.update({ where: { id: articleId }, data });
-  console.log('Article updated.');
-  res.status(201).send(article);
+  try {
+    const article = await prisma.article.update({ where: { id: articleId }, data });
+    console.log('Article updated.');
+    res.status(200).send(article);
+  } catch (err) {
+    next(err);
+  }
 }
 
-export async function deleteArticle(req, res) {
+// 1개 article 삭제
+export async function deleteArticle(req, res, next) {
   const { articleId } = req.params;
-  const article = await prisma.article.delete({ where: { id: articleId } });
-  console.log('Article deleted.');
-  res.status(201).send(article);
-}
-
-//------------------------------------------------- comments
-export async function postArticleComment(req, res) {
-  const { articleId } = req.params;
-  const { content } = req.body;
-  assert({ articleId, content }, CreateComment);
-  const contentArray = Array.isArray(content) ? content : [content];
-
-  const article = await prisma.article.update({
-    where: { id: articleId },
-    data: {
-      comments: {
-        create: contentArray.map((c) => ({ content: c }))
-      }
-    },
-    include: { comments: true }
-  });
-  article.comments = article.comments.map(({ productId, ...rest }) => rest);
-  console.log('Comments updated');
-  res.status(200).send(article);
-}
-
-export async function getArticleCommentList(req, res) {
-  const { articleId } = req.params;
-  const article = await prisma.article.findUniqueOrThrow({
-    where: { id: articleId },
-    select: { comments: true }
-  });
-  console.log('Comments retrieved.');
-  res.status(200).send(article);
-}
-
-export async function deleteArticleCommentList(req, res) {
-  const { articleId } = req.params;
-  const article = await prisma.article.update({
-    where: { id: articleId },
-    data: { comments: { deleteMany: {} } },
-    include: { comments: true }
-  });
-  console.log('Comments deleted.');
-  res.status(201).send(article);
-}
-
-export async function deleteArticleComment(req, res) {
-  const { articleId, commentId } = req.params;
-  const article = await prisma.article.update({
-    where: { id: articleId },
-    data: { comments: { delete: { id: commentId } } },
-    include: { comments: true }
-  });
-  console.log('1 comment deleted.');
-  res.status(201).send(article);
+  try {
+    const article = await prisma.article.delete({ where: { id: articleId } });
+    console.log('Article deleted.');
+    res.status(204).send(article);
+  } catch (err) {
+    next(err);
+  }
 }

@@ -1,17 +1,17 @@
 import { assert } from 'superstruct';
 
-const validate = (schema) => {
+const modelValidate = (schema) => {
   return (req, res, next) => {
     try {
       assert(req.body, schema);
-      next(); // 검증 통과 시 다음 미들웨어로
+      next();
     } catch (err) {
       res.status(400).json({
-        error: '유효성 검사 실패',
+        error: 'Validation failed',
         message: err.message
       });
     }
   };
 };
 
-export default validate;
+export default modelValidate;

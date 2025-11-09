@@ -1,29 +1,20 @@
 import express from 'express';
-import errHandler from '../middleware/errhandler.js';
-import validate from '../middleware/validate.js';
+import modelValidate from '../middleware/modelValidate.js';
 import { CreateProduct, PatchProduct } from '../struct/structs.js';
 import {
-  postProduct,
-  patchProduct,
-  deleteProduct,
-  getProduct,
-  getProductList,
-  deleteProductComment,
-  deleteProductCommentList,
-  getProductCommentList,
-  postProductComment
+  postProduct, // 상품 등록
+  getProductList, // 상품 목록 조회
+  getProduct, // 상품 상세 조회
+  patchProduct, // 상품 수정
+  deleteProduct // 상품 삭제
 } from '../controller/product.js';
 
 const productRouter = express.Router();
 
-productRouter.post('/', validate(CreateProduct), errHandler(postProduct));
-productRouter.get('/', errHandler(getProductList));
-productRouter.patch('/:productId', validate(PatchProduct), errHandler(patchProduct));
-productRouter.delete('/:productId', errHandler(deleteProduct));
-productRouter.get('/:productId', errHandler(getProduct));
-productRouter.post('/:productId/comments', errHandler(postProductComment));
-productRouter.get('/:productId/comments', errHandler(getProductCommentList));
-productRouter.delete('/:productId/comments', errHandler(deleteProductCommentList));
-productRouter.delete('/:productId/comments/:commentId', errHandler(deleteProductComment));
+productRouter.post('/', modelValidate(CreateProduct), postProduct);
+productRouter.get('/', getProductList);
+productRouter.get('/:productId', getProduct);
+productRouter.patch('/:productId', modelValidate(PatchProduct), patchProduct);
+productRouter.delete('/:productId', deleteProduct);
 
 export default productRouter;
